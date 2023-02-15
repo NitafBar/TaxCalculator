@@ -2,6 +2,10 @@
 
 A tax calculator using python and Streamlit to practice using these tools together.
 
+Link to deployed application:
+https://nitafbar-taxcalculator-tacs-opgfk4.streamlit.app/
+
+Link to Streamlit:
 https://streamlit.io/
 
 To install Streamlit:
