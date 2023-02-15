@@ -1,9 +1,11 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
 
 st.title('Tacs')
 
 # Stage 1
-st.header("Stage 1")
+st.header("Stage 1 (Income - Deductions)")
 st.caption("Assessable Income")
 txtAI = st.text_input("AI", value = 0, key = "AI", label_visibility="hidden")
 
@@ -11,7 +13,7 @@ st.caption("Allowable Deductions")
 txtAD = st.text_input("AD", value = 0, key = "AD", label_visibility="hidden")
 
 # Stage 2
-st.header("Stage 2")
+st.header("Stage 2 (Tax Rate)")
 st.subheader("Taxable Income")
 TI = float(txtAI) - float(txtAD)
 st.text(TI)
@@ -38,7 +40,7 @@ def taxRate():
 st.text(taxRate())
 
 # Stage 3
-st.header("Stage 3")
+st.header("Stage 3 (Tax Offset)")
 st.caption("Tax Offset")
 txtTO = st.text_input("TO", value = 0, key = "TO", label_visibility="hidden")
 
@@ -48,11 +50,18 @@ NTA = taxRate() - float(txtTO)
 st.text(NTA)
 
 # Stage 4
-st.header("Stage 4")
+st.header("Stage 4 (Levies and Credit)")
 st.caption("Credit")
 credit = st.text_input("credit", value = 0, key = "credit", label_visibility="hidden")
 
 st.subheader("Final Tax Amount")
 
-st.text( NTA + (TI * 0.02) - float(credit))
+FTA = NTA + (TI * 0.02) - float(credit)
+st.text(FTA)
+
+chart_data = pd.DataFrame({
+    "Amount ($)": [taxRate(), NTA, FTA],
+    })
+
+st.bar_chart(chart_data)
 
