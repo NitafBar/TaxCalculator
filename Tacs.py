@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title('Tacs')
+st.title('Tax')
 
 # Stage 1
 st.header("Stage 1 (Income - Deductions)")
